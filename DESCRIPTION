@@ -5,9 +5,8 @@ Version: 0.0.1
 Authors@R: 
     person(c("Sean", "C."), "Anderson", , "sean@seananderson.ca", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-9563-1937"))
-Description: Facilitates fitting 'sdmTMB' models with 'rstan'/'tmbstan';
-    adding meshes with correlation barriers, and calculating 'DHARMa'
-    residuals.  Accompanies the 'sdmTMB' package.
+Description: Facilitates fitting 'sdmTMB' models with 'rstan'/'tmbstan' and 
+    calculating 'DHARMa' residuals.  Accompanies the 'sdmTMB' package.
 License: GPL-3
 Depends:
     R (>= 3.5.0)
