@@ -29,6 +29,7 @@ Suggests:
 VignetteBuilder: 
     knitr
 Additional_repositories: https://inla.r-inla-download.org/R/stable
+Remotes: pbs-assess/sdmTMB
 Config/testthat/edition: 3
 Config/testthat/parallel: true
 Encoding: UTF-8
