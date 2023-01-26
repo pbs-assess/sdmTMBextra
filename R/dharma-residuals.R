@@ -1,14 +1,14 @@
 #' DHARMa residuals
 #'
 #' Plot (and possibly return) DHARMa residuals. This is a wrapper function
-#' around [DHARMa::createDHARMa()] to facilitate its use with [sdmTMB()] models.
+#' around [DHARMa::createDHARMa()] to facilitate its use with [sdmTMB::sdmTMB()] models.
 #' **Note**: simulation testing suggests that these DHARMa residuals can suggest
 #' problems with model fit even with properly specified models presumably due to
 #' the Laplace approximation and/or spatially correlated random effects.
-#' Consider the slower [residuals.sdmTMB()] with `type = "mle-mcmc"`.
+#' Consider the slower [sdmTMB::residuals.sdmTMB()] with `type = "mle-mcmc"`.
 #'
-#' @param simulated_response Output from [simulate.sdmTMB()].
-#' @param object Output from [sdmTMB()].
+#' @param simulated_response Output from [sdmTMB::simulate.sdmTMB()].
+#' @param object Output from [sdmTMB::sdmTMB()].
 #' @param plot Logical.
 #' @param ... Other arguments to pass to [DHARMa::createDHARMa()].
 # @param fitted_column The column from the output of [predict.sdmTMB()] to pass
@@ -23,9 +23,11 @@
 #' @importFrom assertthat assert_that
 #' @importFrom cli cli_abort
 #'
-#' @seealso [simulate.sdmTMB()], [residuals.sdmTMB()]
+#' @seealso [sdmTMB::simulate.sdmTMB()], [sdmTMB::residuals.sdmTMB()]
 #'
 #' @examplesIf sdmTMB::inla_installed()
+#'
+#' library(sdmTMB)
 #' fit <- sdmTMB(density ~ as.factor(year) + s(depth, k = 3),
 #'   data = pcod_2011, time = "year", mesh = pcod_mesh_2011,
 #'   family = tweedie(link = "log"), spatial = "off",

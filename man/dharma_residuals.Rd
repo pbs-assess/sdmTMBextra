@@ -7,9 +7,9 @@
 dharma_residuals(simulated_response, object, plot = TRUE, ...)
 }
 \arguments{
-\item{simulated_response}{Output from \code{\link[=simulate.sdmTMB]{simulate.sdmTMB()}}.}
+\item{simulated_response}{Output from \code{\link[sdmTMB:simulate.sdmTMB]{sdmTMB::simulate.sdmTMB()}}.}
 
-\item{object}{Output from \code{\link[=sdmTMB]{sdmTMB()}}.}
+\item{object}{Output from \code{\link[sdmTMB:sdmTMB]{sdmTMB::sdmTMB()}}.}
 
 \item{plot}{Logical.}
 
@@ -22,14 +22,16 @@ to plot the residuals yourself. See the examples.
 }
 \description{
 Plot (and possibly return) DHARMa residuals. This is a wrapper function
-around \code{\link[DHARMa:createDHARMa]{DHARMa::createDHARMa()}} to facilitate its use with \code{\link[=sdmTMB]{sdmTMB()}} models.
+around \code{\link[DHARMa:createDHARMa]{DHARMa::createDHARMa()}} to facilitate its use with \code{\link[sdmTMB:sdmTMB]{sdmTMB::sdmTMB()}} models.
 \strong{Note}: simulation testing suggests that these DHARMa residuals can suggest
 problems with model fit even with properly specified models presumably due to
 the Laplace approximation and/or spatially correlated random effects.
-Consider the slower \code{\link[=residuals.sdmTMB]{residuals.sdmTMB()}} with \code{type = "mle-mcmc"}.
+Consider the slower \code{\link[sdmTMB:residuals.sdmTMB]{sdmTMB::residuals.sdmTMB()}} with \code{type = "mle-mcmc"}.
 }
 \examples{
 \dontshow{if (sdmTMB::inla_installed()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+
+library(sdmTMB)
 fit <- sdmTMB(density ~ as.factor(year) + s(depth, k = 3),
   data = pcod_2011, time = "year", mesh = pcod_mesh_2011,
   family = tweedie(link = "log"), spatial = "off",
@@ -49,5 +51,5 @@ abline(a = 0, b = 1)
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-\code{\link[=simulate.sdmTMB]{simulate.sdmTMB()}}, \code{\link[=residuals.sdmTMB]{residuals.sdmTMB()}}
+\code{\link[sdmTMB:simulate.sdmTMB]{sdmTMB::simulate.sdmTMB()}}, \code{\link[sdmTMB:residuals.sdmTMB]{sdmTMB::residuals.sdmTMB()}}
 }
