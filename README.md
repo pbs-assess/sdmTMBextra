@@ -1,6 +1,7 @@
 # sdmTMBextra
 
 <!-- badges: start -->
+[![R-CMD-check](https://github.com/pbs-assess/sdmTMBextra/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/pbs-assess/sdmTMBextra/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 sdmTMBextra is an R package with extra utilities for working with sdmTMB models. Functionality includes:
