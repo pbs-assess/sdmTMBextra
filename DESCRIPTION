@@ -1,31 +1,34 @@
 Type: Package
 Package: sdmTMBstan
-Title: Helper Functions for Fitting 'sdmTMB' Models with 'rstan'
+Title: Extra Functions for Working with 'sdmTMB' Models
 Version: 0.0.1
 Authors@R: 
     person(c("Sean", "C."), "Anderson", , "sean@seananderson.ca", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-9563-1937"))
-Description: Facilitates fitting 'sdmTMB' models with 'rstan'/'tmbstan'.
+Description: Facilitates fitting 'sdmTMB' models with 'rstan'/'tmbstan'; adding
+    meshes with correlation barriers, and calculating 'DHARMa' residuals.
     Accompanies the 'sdmTMB' package.
 License: GPL-3
 Depends:
     R (>= 3.5.0)
 Imports:
     cli,
+    DHARMa,
     rstan,
     stats,
     TMB (>= 1.8.0),
     tmbstan
 Suggests:
+    bayesplot,
     ggplot2,
     knitr,
     rmarkdown,
-    sdmTMB,
-    bayesplot
+    sdmTMB
+VignetteBuilder: 
+    knitr
 Config/testthat/edition: 3
 Config/testthat/parallel: true
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
-VignetteBuilder: knitr
