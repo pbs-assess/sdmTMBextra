@@ -33,6 +33,7 @@
 #' stan_args <- list(control = list(adapt_delta = 0.9, max_treedepth = 12))
 #' samp <- predict_mle_mcmc(fit, mcmc_iter = 101, mcmc_warmup = 100, stan_args = stan_args)
 #' r <- residuals(fit, type = "mle-mcmc", mcmc_samples = samp)
+#' @export
 
 predict_mle_mcmc <- function(
     object,
@@ -77,6 +78,6 @@ predict_mle_mcmc <- function(
   obj_mle <- object
   obj_mle$tmb_obj <- obj
   obj_mle$tmb_map <- map
-  pred <- predict(obj_mle, tmbstan_model = samp, model = model, nsim = 1L) # only use last
+  pred <- predict(obj_mle, mcmc_samples = extract_mcmc(samp), model = model, nsim = 1L) # only use last
   pred
 }

@@ -28,6 +28,8 @@
 #' @examplesIf sdmTMB::inla_installed()
 #'
 #' library(sdmTMB)
+#' library(sdmTMBextra)
+#'
 #' fit <- sdmTMB(density ~ as.factor(year) + s(depth, k = 3),
 #'   data = pcod_2011, time = "year", mesh = pcod_mesh_2011,
 #'   family = tweedie(link = "log"), spatial = "off",
@@ -37,10 +39,10 @@
 #' # simulate() can be piped to dharma_residuals():
 #'
 #' simulate(fit, nsim = 500) |>
-#'   dharma_residuals(fit)
+#'   sdmTMBextra::dharma_residuals(fit)
 #'
 #' s <- simulate(fit, nsim = 200)
-#' r <- dharma_residuals(s, fit, plot = FALSE)
+#' r <- sdmTMBextra::dharma_residuals(s, fit, plot = FALSE)
 #' head(r)
 #' plot(r$expected, r$observed)
 #' abline(a = 0, b = 1)

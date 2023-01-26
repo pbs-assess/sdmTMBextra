@@ -25,6 +25,7 @@ Extract MCMC samples from an sdmTMB model fit with tmbstan.
 \dontshow{if (sdmTMB::ggplot2_installed() && sdmTMB::inla_installed()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 
 library(sdmTMB)
+library(sdmTMBextra)
 mesh <- make_mesh(pcod_2011, c("X", "Y"), cutoff = 35) # quite coarse
 
 # Fit with marginal maximum likelihood first:
@@ -75,7 +76,7 @@ print(
 
 nd <- replicate_df(qcs_grid, "year", unique(pcod_2011$year))
 
-post <- extract_mcmc(m_stan)
+post <- sdmTMBextra::extract_mcmc(m_stan)
 p <- predict(fit_mle, newdata = nd, mcmc_samples = post)
 
 p_last <- p[nd$year == max(nd$year), ] # just plot last year
