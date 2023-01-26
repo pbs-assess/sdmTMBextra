@@ -72,7 +72,7 @@ jobs:
           remotes::install_deps(dependencies = TRUE)
           remotes::install_cran("sf")
           remotes::install_cran("rcmdcheck")
-          remotes::install_cran("sdmTMB")
+          remotes::install_github("pbs-assess/sdmTMB", dependencies = NA)
           remotes::install_cran("textshaping")
           remotes::install_cran("rgdal")
         shell: Rscript {0}
@@ -83,7 +83,7 @@ jobs:
           remotes::install_deps(dependencies = NA)
           install.packages("INLA",repos=c(getOption("repos"),INLA="https://inla.r-inla-download.org/R/stable"), dep=TRUE)
           remotes::install_cran("knitr")
-          remotes::install_cran("sdmTMB")
+          remotes::install_github("pbs-assess/sdmTMB", dependencies = NA)
           remotes::install_cran("ggplot2")
           remotes::install_cran("rmarkdown")
           remotes::install_cran("rcmdcheck")
@@ -94,7 +94,7 @@ jobs:
         run: |
           remotes::install_deps(dependencies = NA)
           remotes::install_cran("knitr")
-          remotes::install_cran("sdmTMB")
+          remotes::install_github("pbs-assess/sdmTMB", dependencies = NA)
           remotes::install_cran("rmarkdown")
           remotes::install_cran("rcmdcheck")
         shell: Rscript {0}
