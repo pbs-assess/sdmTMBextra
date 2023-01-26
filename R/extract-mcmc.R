@@ -13,7 +13,7 @@
 #'
 #' @importFrom stats predict
 #'
-#' @examplesIf sdmTMB::ggplot2_installed()
+#' @examplesIf sdmTMB::ggplot2_installed() && sdmTMB::inla_installed()
 #'
 #' library(sdmTMB)
 #' mesh <- make_mesh(pcod_2011, c("X", "Y"), cutoff = 35) # quite coarse
@@ -63,11 +63,12 @@
 #'   pars = c("b_j", "thetaf", "ln_phi", "omega_s[1]", "epsilon_st[1]")
 #' )
 #'
-#' post <- extract_mcmc(m_stan)
-#' dim(post)
 #'
 #' nd <- replicate_df(qcs_grid, "year", unique(pcod_2011$year))
-#' p <- predict(fit_mle, newdata = nd, tmbstan_model = m_stan)
+#'
+#' post <- extract_mcmc(m_stan)
+#' p <- predict(fit_mle, newdata = nd, mcmc_samples = post)
+#'
 #' p_last <- p[nd$year == max(nd$year), ] # just plot last year
 #' pred <- nd[nd$year == max(nd$year), ]
 #' pred$est <- apply(exp(p_last), 1, median)

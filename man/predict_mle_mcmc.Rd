@@ -33,7 +33,7 @@ their MLE values. This avoids the Laplace approximation, which is useful for
 checking residuals among other uses.
 }
 \examples{
-
+\dontshow{if (sdmTMB::inla_installed()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 library(sdmTMB)
 mesh <- make_mesh(pcod_2011, c("X", "Y"), cutoff = 10)
 fit <- sdmTMB(
@@ -42,22 +42,17 @@ fit <- sdmTMB(
   family = binomial()
 )
 
-# quick but can have issues because of Laplace approximation:
-r1 <- residuals(fit, type = "mle-laplace")
-qqnorm(r1)
-qqline(r1)
-
-# MCMC-based with fixed effects at MLEs; best but slowest:
+# MCMC-based with fixed effects at MLEs; best but can be slow:
 set.seed(2938)
-r2 <- residuals(fit, type = "mle-mcmc", mcmc_iter = 101, mcmc_warmup = 100)
-qqnorm(r2)
-qqline(r2)
+samp <- predict_mle_mcmc(fit, mcmc_iter = 101, mcmc_warmup = 100, print_stan_model = TRUE)
+r <- residuals(fit, type = "mle-mcmc", mcmc_samples = samp)
+qqnorm(r)
+qqline(r)
 
 # Example of passing control arguments to rstan::sampling():
 # 11 iterations used for a quick example; don't do this normally
 stan_args <- list(control = list(adapt_delta = 0.9, max_treedepth = 12))
-r3 <- residuals(
-  fit, type = "mle-mcmc", mcmc_iter = 11, mcmc_warmup = 10,
-  stan_args = stan_args
-)
+samp <- predict_mle_mcmc(fit, mcmc_iter = 101, mcmc_warmup = 100, stan_args = stan_args)
+r <- residuals(fit, type = "mle-mcmc", mcmc_samples = samp)
+\dontshow{\}) # examplesIf}
 }

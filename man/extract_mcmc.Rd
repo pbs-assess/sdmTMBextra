@@ -22,7 +22,7 @@ make fully Bayesian predictions. See the \code{mcmc_samples} argument in
 Extract MCMC samples from an sdmTMB model fit with tmbstan.
 }
 \examples{
-\dontshow{if (sdmTMB::ggplot2_installed()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (sdmTMB::ggplot2_installed() && sdmTMB::inla_installed()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 
 library(sdmTMB)
 mesh <- make_mesh(pcod_2011, c("X", "Y"), cutoff = 35) # quite coarse
@@ -72,11 +72,12 @@ print(
   pars = c("b_j", "thetaf", "ln_phi", "omega_s[1]", "epsilon_st[1]")
 )
 
-post <- extract_mcmc(m_stan)
-dim(post)
 
 nd <- replicate_df(qcs_grid, "year", unique(pcod_2011$year))
-p <- predict(fit_mle, newdata = nd, tmbstan_model = m_stan)
+
+post <- extract_mcmc(m_stan)
+p <- predict(fit_mle, newdata = nd, mcmc_samples = post)
+
 p_last <- p[nd$year == max(nd$year), ] # just plot last year
 pred <- nd[nd$year == max(nd$year), ]
 pred$est <- apply(exp(p_last), 1, median)
