@@ -78,6 +78,9 @@ predict_mle_mcmc <- function(
   obj_mle <- object
   obj_mle$tmb_obj <- obj
   obj_mle$tmb_map <- map
-  pred <- predict(obj_mle, mcmc_samples = extract_mcmc(samp), model = model, nsim = 1L) # only use last
+  if (isTRUE(object$family$delta) && identical(model, c(1, 2))) {
+    cli_inform(paste0("Predicting for delta model ", model[[1]], ". Use the `model` argument to select the other component."))
+  }
+  pred <- predict(obj_mle, mcmc_samples = extract_mcmc(samp), model = model[[1]], nsim = 1L) # only use last
   pred
 }
