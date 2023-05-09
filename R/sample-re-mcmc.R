@@ -11,6 +11,7 @@
 #' @param mcmc_warmup Warmup for MCMC residuals.
 #' @param print_stan_model Print the Stan model from MCMC residuals?
 #' @param stan_args A list of arguments that will be passed to [rstan::sampling()].
+#' @param nsim Number of MCMC samples to return.
 #'
 #' @examplesIf sdmTMB::inla_installed()
 #' library(sdmTMB)
@@ -41,7 +42,8 @@ predict_mle_mcmc <- function(
     mcmc_iter = 500,
     mcmc_warmup = 250,
     print_stan_model = FALSE,
-    stan_args = NULL) {
+    stan_args = NULL,
+    nsim = 1) {
 
   # from https://github.com/mcruf/LGNB/blob/8aba1ee2df045c2eb45e124d5a753e8f1c6e865a/R/Validation_and_Residuals.R
   # get names of random effects in the model
@@ -81,6 +83,6 @@ predict_mle_mcmc <- function(
   if (isTRUE(object$family$delta) && identical(model, c(1, 2))) {
     cli_inform(paste0("Predicting for delta model ", model[[1]], ". Use the `model` argument to select the other component."))
   }
-  pred <- predict(obj_mle, mcmc_samples = extract_mcmc(samp), model = model[[1]], nsim = 1L) # only use last
+  pred <- predict(obj_mle, mcmc_samples = extract_mcmc(samp), model = model[[1]], nsim = nsim)
   pred
 }

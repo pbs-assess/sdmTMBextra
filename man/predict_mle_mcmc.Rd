@@ -10,7 +10,8 @@ predict_mle_mcmc(
   mcmc_iter = 500,
   mcmc_warmup = 250,
   print_stan_model = FALSE,
-  stan_args = NULL
+  stan_args = NULL,
+  nsim = 1
 )
 }
 \arguments{
@@ -25,6 +26,8 @@ predict_mle_mcmc(
 \item{print_stan_model}{Print the Stan model from MCMC residuals?}
 
 \item{stan_args}{A list of arguments that will be passed to \code{\link[rstan:stanmodel-method-sampling]{rstan::sampling()}}.}
+
+\item{nsim}{Number of MCMC samples to return.}
 }
 \description{
 Calculates predictions in link space on the original fitted data with random
