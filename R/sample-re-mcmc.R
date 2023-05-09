@@ -34,6 +34,9 @@
 #' stan_args <- list(control = list(adapt_delta = 0.9, max_treedepth = 12))
 #' samp <- predict_mle_mcmc(fit, mcmc_iter = 101, mcmc_warmup = 100, stan_args = stan_args)
 #' r <- residuals(fit, type = "mle-mcmc", mcmc_samples = samp)
+#'
+#' stan_fit <- sample_mle_mcmc(fit, mcmc_iter = 200, mcmc_warmup = 100)
+#' stan_fit
 #' @export
 
 predict_mle_mcmc <- function(
@@ -64,7 +67,8 @@ predict_mle_mcmc <- function(
 }
 
 #' @rdname predict_mle_mcmc
-fit_mle_mcmc <- function(
+#' @export
+sample_mle_mcmc <- function(
     object,
     mcmc_warmup = 250,
     mcmc_iter = 500,

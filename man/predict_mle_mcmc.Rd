@@ -2,7 +2,7 @@
 % Please edit documentation in R/sample-re-mcmc.R
 \name{predict_mle_mcmc}
 \alias{predict_mle_mcmc}
-\alias{fit_mle_mcmc}
+\alias{sample_mle_mcmc}
 \title{Predict from an sdmTMB model with random effects sampled via MCMC}
 \usage{
 predict_mle_mcmc(
@@ -15,7 +15,7 @@ predict_mle_mcmc(
   nsim = 1
 )
 
-fit_mle_mcmc(object, mcmc_warmup = 250, mcmc_iter = 500, stan_args = NULL)
+sample_mle_mcmc(object, mcmc_warmup = 250, mcmc_iter = 500, stan_args = NULL)
 }
 \arguments{
 \item{object}{An \code{\link[sdmTMB:sdmTMB]{sdmTMB::sdmTMB()}} model}
@@ -60,5 +60,8 @@ qqline(r)
 stan_args <- list(control = list(adapt_delta = 0.9, max_treedepth = 12))
 samp <- predict_mle_mcmc(fit, mcmc_iter = 101, mcmc_warmup = 100, stan_args = stan_args)
 r <- residuals(fit, type = "mle-mcmc", mcmc_samples = samp)
+
+stan_fit <- sample_mle_mcmc(fit, mcmc_iter = 200, mcmc_warmup = 100)
+stan_fit
 \dontshow{\}) # examplesIf}
 }
