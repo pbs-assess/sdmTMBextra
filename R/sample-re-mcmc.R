@@ -44,10 +44,31 @@ predict_mle_mcmc <- function(
     print_stan_model = FALSE,
     stan_args = NULL,
     nsim = 1) {
-
   # from https://github.com/mcruf/LGNB/blob/8aba1ee2df045c2eb45e124d5a753e8f1c6e865a/R/Validation_and_Residuals.R
   # get names of random effects in the model
+  samp <- fit_mle_mcmc(
+    object = object, mcmc_iter = mcmc_iter, mcmc_warmup = mcmc_warmup,
+    stan_args = stan_args
+  )
 
+  if (print_stan_model) print(samp)
+
+  obj_mle <- object
+  obj_mle$tmb_obj <- obj
+  obj_mle$tmb_map <- map
+  if (isTRUE(object$family$delta) && identical(model, c(1, 2))) {
+    cli_inform(paste0("Predicting for delta model ", model[[1]], ". Use the `model` argument to select the other component."))
+  }
+  pred <- predict(obj_mle, mcmc_samples = extract_mcmc(samp), model = model[[1]], nsim = nsim)
+  pred
+}
+
+#' @rdname predict_mle_mcmc
+fit_mle_mcmc <- function(
+    object,
+    mcmc_warmup = 250,
+    mcmc_iter = 500,
+    stan_args = NULL) {
   obj <- object$tmb_obj
   random <- unique(names(obj$env$par[obj$env$random]))
 
@@ -72,17 +93,5 @@ predict_mle_mcmc <- function(
   # run MCMC to get posterior sample of random effects given data:
   args <- list(obj = obj, chains = 1L, iter = mcmc_iter, warmup = mcmc_warmup)
   args <- c(args, stan_args)
-
-  samp <- do.call(tmbstan::tmbstan, args)
-
-  if (print_stan_model) print(samp)
-
-  obj_mle <- object
-  obj_mle$tmb_obj <- obj
-  obj_mle$tmb_map <- map
-  if (isTRUE(object$family$delta) && identical(model, c(1, 2))) {
-    cli_inform(paste0("Predicting for delta model ", model[[1]], ". Use the `model` argument to select the other component."))
-  }
-  pred <- predict(obj_mle, mcmc_samples = extract_mcmc(samp), model = model[[1]], nsim = nsim)
-  pred
+  do.call(tmbstan::tmbstan, args)
 }

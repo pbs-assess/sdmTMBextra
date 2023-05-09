@@ -2,6 +2,7 @@
 % Please edit documentation in R/sample-re-mcmc.R
 \name{predict_mle_mcmc}
 \alias{predict_mle_mcmc}
+\alias{fit_mle_mcmc}
 \title{Predict from an sdmTMB model with random effects sampled via MCMC}
 \usage{
 predict_mle_mcmc(
@@ -13,6 +14,8 @@ predict_mle_mcmc(
   stan_args = NULL,
   nsim = 1
 )
+
+fit_mle_mcmc(object, mcmc_warmup = 250, mcmc_iter = 500, stan_args = NULL)
 }
 \arguments{
 \item{object}{An \code{\link[sdmTMB:sdmTMB]{sdmTMB::sdmTMB()}} model}
