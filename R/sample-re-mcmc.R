@@ -56,6 +56,15 @@ predict_mle_mcmc <- function(
 
   if (print_stan_model) print(samp)
 
+  obj <- object$tmb_obj
+  random <- unique(names(obj$env$par[obj$env$random]))
+  # get (logical) non random effects indices:
+  pl <- as.list(object$sd_report, "Estimate")
+  fixed <- !(names(pl) %in% random)
+  # fix non-random parameters to their estimated values:
+  map <- lapply(pl[fixed], function(x) factor(rep(NA, length(x))))
+  # construct corresponding new function object:
+  obj <- TMB::MakeADFun(obj$env$data, pl, map = map, DLL = "sdmTMB")
   obj_mle <- object
   obj_mle$tmb_obj <- obj
   obj_mle$tmb_map <- map
