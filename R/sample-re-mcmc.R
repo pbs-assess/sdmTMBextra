@@ -49,7 +49,7 @@ predict_mle_mcmc <- function(
     nsim = 1) {
   # from https://github.com/mcruf/LGNB/blob/8aba1ee2df045c2eb45e124d5a753e8f1c6e865a/R/Validation_and_Residuals.R
   # get names of random effects in the model
-  samp <- fit_mle_mcmc(
+  samp <- sample_mle_mcmc(
     object = object, mcmc_iter = mcmc_iter, mcmc_warmup = mcmc_warmup,
     stan_args = stan_args
   )
