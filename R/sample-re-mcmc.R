@@ -9,6 +9,7 @@
 #' @param model Which delta/hurdle model component?
 #' @param mcmc_iter Iterations for MCMC residuals. Will take the last one.
 #' @param mcmc_warmup Warmup for MCMC residuals.
+#' @param mcmc_chains MCMC chains.
 #' @param print_stan_model Print the Stan model from MCMC residuals?
 #' @param stan_args A list of arguments that will be passed to [rstan::sampling()].
 #' @param nsim Number of MCMC samples to return.
@@ -82,6 +83,7 @@ sample_mle_mcmc <- function(
     object,
     mcmc_warmup = 250,
     mcmc_iter = 500,
+    mcmc_chains = 1,
     stan_args = NULL) {
   obj <- object$tmb_obj
   random <- unique(names(obj$env$par[obj$env$random]))
@@ -105,7 +107,7 @@ sample_mle_mcmc <- function(
   obj <- TMB::MakeADFun(obj$env$data, pl, map = map, DLL = "sdmTMB")
 
   # run MCMC to get posterior sample of random effects given data:
-  args <- list(obj = obj, chains = 1L, iter = mcmc_iter, warmup = mcmc_warmup)
+  args <- list(obj = obj, chains = mcmc_chains, iter = mcmc_iter, warmup = mcmc_warmup)
   args <- c(args, stan_args)
   do.call(tmbstan::tmbstan, args)
 }

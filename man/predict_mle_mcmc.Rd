@@ -15,7 +15,13 @@ predict_mle_mcmc(
   nsim = 1
 )
 
-sample_mle_mcmc(object, mcmc_warmup = 250, mcmc_iter = 500, stan_args = NULL)
+sample_mle_mcmc(
+  object,
+  mcmc_warmup = 250,
+  mcmc_iter = 500,
+  mcmc_chains = 1,
+  stan_args = NULL
+)
 }
 \arguments{
 \item{object}{An \code{\link[sdmTMB:sdmTMB]{sdmTMB::sdmTMB()}} model}
@@ -31,6 +37,8 @@ sample_mle_mcmc(object, mcmc_warmup = 250, mcmc_iter = 500, stan_args = NULL)
 \item{stan_args}{A list of arguments that will be passed to \code{\link[rstan:stanmodel-method-sampling]{rstan::sampling()}}.}
 
 \item{nsim}{Number of MCMC samples to return.}
+
+\item{mcmc_chains}{MCMC chains.}
 }
 \description{
 Calculates predictions in link space on the original fitted data with random
