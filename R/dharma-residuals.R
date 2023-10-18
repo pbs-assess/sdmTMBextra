@@ -25,7 +25,7 @@
 #'
 #' @seealso [sdmTMB::simulate.sdmTMB()], [sdmTMB::residuals.sdmTMB()]
 #'
-#' @examplesIf sdmTMB::inla_installed()
+#' @examples
 #'
 #' library(sdmTMB)
 #' library(sdmTMBextra)

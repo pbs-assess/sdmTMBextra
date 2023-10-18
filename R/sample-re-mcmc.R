@@ -14,7 +14,7 @@
 #' @param stan_args A list of arguments that will be passed to [rstan::sampling()].
 #' @param nsim Number of MCMC samples to return.
 #'
-#' @examplesIf sdmTMB::inla_installed()
+#' @examples
 #' library(sdmTMB)
 #' mesh <- make_mesh(pcod_2011, c("X", "Y"), cutoff = 10)
 #' fit <- sdmTMB(

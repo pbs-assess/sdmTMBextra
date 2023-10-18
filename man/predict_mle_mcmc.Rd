@@ -47,7 +47,6 @@ their MLE values. This avoids the Laplace approximation, which is useful for
 checking residuals among other uses.
 }
 \examples{
-\dontshow{if (sdmTMB::inla_installed()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 library(sdmTMB)
 mesh <- make_mesh(pcod_2011, c("X", "Y"), cutoff = 10)
 fit <- sdmTMB(
@@ -71,5 +70,4 @@ r <- residuals(fit, type = "mle-mcmc", mcmc_samples = samp)
 
 stan_fit <- sample_mle_mcmc(fit, mcmc_iter = 200, mcmc_warmup = 100)
 stan_fit
-\dontshow{\}) # examplesIf}
 }

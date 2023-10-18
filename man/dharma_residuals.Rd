@@ -29,7 +29,6 @@ the Laplace approximation and/or spatially correlated random effects.
 Consider the slower \code{\link[sdmTMB:residuals.sdmTMB]{sdmTMB::residuals.sdmTMB()}} with \code{type = "mle-mcmc"}.
 }
 \examples{
-\dontshow{if (sdmTMB::inla_installed()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 
 library(sdmTMB)
 library(sdmTMBextra)
@@ -50,7 +49,6 @@ r <- sdmTMBextra::dharma_residuals(s, fit, plot = FALSE)
 head(r)
 plot(r$expected, r$observed)
 abline(a = 0, b = 1)
-\dontshow{\}) # examplesIf}
 }
 \seealso{
 \code{\link[sdmTMB:simulate.sdmTMB]{sdmTMB::simulate.sdmTMB()}}, \code{\link[sdmTMB:residuals.sdmTMB]{sdmTMB::residuals.sdmTMB()}}

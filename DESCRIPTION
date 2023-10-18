@@ -14,17 +14,24 @@ Imports:
     assertthat,
     cli,
     DHARMa,
+    graphics,
     rstan,
     stats,
     TMB (>= 1.8.0),
     tmbstan
 Suggests:
     bayesplot,
+    dplyr,
     ggplot2,
     INLA,
+    INLAspacetime,
     knitr,
     rmarkdown,
-    sdmTMB
+    rnaturalearth,
+    rnaturalearthdata,
+    sdmTMB,
+    sf,
+    testthat (>= 3.0.0)
 VignetteBuilder: 
     knitr
 Additional_repositories: https://inla.r-inla-download.org/R/stable

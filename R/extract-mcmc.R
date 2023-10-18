@@ -13,7 +13,7 @@
 #'
 #' @importFrom stats predict
 #'
-#' @examplesIf sdmTMB::ggplot2_installed() && sdmTMB::inla_installed()
+#' @examplesIf sdmTMB::ggplot2_installed()
 #'
 #' library(sdmTMB)
 #' library(sdmTMBextra)
