@@ -74,6 +74,8 @@ jobs:
           remotes::install_cran("rcmdcheck")
           remotes::install_github("pbs-assess/sdmTMB", dependencies = NA)
           remotes::install_cran("textshaping")
+          install.packages("Matrix", type = "source")
+          install.packages("TMB", type = "source")
         shell: Rscript {0}
 
       - name: Install dependencies Ubuntu
@@ -86,6 +88,8 @@ jobs:
           remotes::install_cran("ggplot2")
           remotes::install_cran("rmarkdown")
           remotes::install_cran("rcmdcheck")
+          install.packages("Matrix", type = "source")
+          install.packages("TMB", type = "source")
         shell: Rscript {0}
 
       - name: Install dependencies Windows
@@ -96,6 +100,8 @@ jobs:
           remotes::install_github("pbs-assess/sdmTMB", dependencies = NA)
           remotes::install_cran("rmarkdown")
           remotes::install_cran("rcmdcheck")
+          install.packages("Matrix", type = "source")
+          install.packages("TMB", type = "source")
         shell: Rscript {0}
 
       - name: Check
