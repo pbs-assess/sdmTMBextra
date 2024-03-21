@@ -1,7 +1,7 @@
 Type: Package
 Package: sdmTMBextra
 Title: Extra Functions for Working with 'sdmTMB' Models
-Version: 0.0.3
+Version: 0.0.2
 Authors@R: 
     person(c("Sean", "C."), "Anderson", , "sean@seananderson.ca", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-9563-1937"))
@@ -41,4 +41,4 @@ Config/testthat/parallel: true
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.1
+RoxygenNote: 7.2.3

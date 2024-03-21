@@ -72,11 +72,10 @@ predict_mle_mcmc <- function(
   if (isTRUE(object$family$delta) && identical(model, c(1, 2))) {
     cli_inform(paste0("Predicting for delta model ", model[[1]], ". Use the `model` argument to select the other component."))
   }
-  if (!"offset" %in% names(object)) stop("It looks like this model was fit with an older version of sdmTMB.", call. = FALSE)
   pred <- predict(
     obj_mle, newdata = object$data, mcmc_samples = extract_mcmc(samp),
     model = model[[1]], nsim = nsim,
-    offset = object$offset
+    offset = obj_mle$tmb_data$offset_i
   )
   pred
 }
