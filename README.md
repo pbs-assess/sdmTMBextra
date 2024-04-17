@@ -7,7 +7,6 @@
 sdmTMBextra is an R package with extra utilities for working with [sdmTMB](https://github.com/pbs-assess/sdmTMB) models. Functionality includes:
 
 - Sampling with MCMC using [rstan](https://CRAN.R-project.org/package=rstan)/[tmbstan](https://CRAN.R-project.org/package=tmbstan)
-- [DHARMa](https://CRAN.R-project.org/package=DHARMa) residuals
 - Spatial correlation barriers with SPDE meshes based on utilities from INLA
 
 The package was developed to reduce heavier package dependencies within the main [sdmTMB](https://github.com/pbs-assess/sdmTMB) package.
