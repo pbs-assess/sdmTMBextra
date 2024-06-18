@@ -15,6 +15,7 @@
 #'
 #' @importFrom cli cli_inform cli_abort
 #' @importFrom graphics points
+#' @importFrom assertthat assert_that
 #'
 #' @return A list similar to [sdmTMB::make_mesh()] but with `spde_barrier` and a
 #' couple other helper list elements added.
