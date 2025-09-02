@@ -44,7 +44,7 @@
 #' library(dplyr)
 #' library(ggplot2)
 #'
-#' # For applied situations on finer scales, you may with to use scale = "large".
+#' # For applied situations on finer scales, you may wish to use scale = "large".
 #' # For that, first: remotes::install_github("ropensci/rnaturalearthhires")
 #' map_data <- rnaturalearth::ne_countries(
 #'   scale = "medium",
@@ -83,7 +83,7 @@
 #' dat$X1000 <- surv_utm_coords[,1] / 1000
 #' dat$Y1000 <- surv_utm_coords[,2] / 1000
 #'
-# # Construct our mesh:
+#' # Construct our mesh:
 #' mesh <- sdmTMB::make_mesh(dat, xy_cols = c("X1000", "Y1000"),
 #'   n_knots = 200, type = "kmeans")
 #' plot(mesh)
@@ -162,6 +162,7 @@ add_barrier_mesh <- function(spde_obj, barrier_sf, range_fraction = 0.2,
   }
   # barrier_spde <- INLA::inla.barrier.fem(mesh, barrier.triangles = land.triangles)
   barrier_spde <- INLAspacetime::mesh2fem.barrier(mesh, barrier.triangles = land.triangles)
+
   spde_obj$spde_barrier <- barrier_spde
   spde_obj$barrier_scaling <- c(1, range_fraction)
   spde_obj$mesh_sf <- mesh_sf

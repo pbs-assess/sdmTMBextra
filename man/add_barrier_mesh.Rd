@@ -53,7 +53,7 @@ library(sdmTMB)
 library(dplyr)
 library(ggplot2)
 
-# For applied situations on finer scales, you may with to use scale = "large".
+# For applied situations on finer scales, you may wish to use scale = "large".
 # For that, first: remotes::install_github("ropensci/rnaturalearthhires")
 map_data <- rnaturalearth::ne_countries(
   scale = "medium",
@@ -92,6 +92,7 @@ surv_utm_coords <- sf::st_coordinates(survey)
 dat$X1000 <- surv_utm_coords[,1] / 1000
 dat$Y1000 <- surv_utm_coords[,2] / 1000
 
+# Construct our mesh:
 mesh <- sdmTMB::make_mesh(dat, xy_cols = c("X1000", "Y1000"),
   n_knots = 200, type = "kmeans")
 plot(mesh)

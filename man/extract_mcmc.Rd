@@ -22,7 +22,7 @@ make fully Bayesian predictions. See the \code{mcmc_samples} argument in
 Extract MCMC samples from an sdmTMB model fit with tmbstan.
 }
 \examples{
-\dontshow{if (sdmTMB::ggplot2_installed()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (sdmTMB::ggplot2_installed()) withAutoprint(\{ # examplesIf}
 
 library(sdmTMB)
 library(sdmTMBextra)
