@@ -44,7 +44,13 @@ jobs:
         with:
           extra-packages: any::rcmdcheck
           needs: check
-          extra-repositories: https://inla.r-inla-download.org/R/stable
+          dependencies: '"hard"'
+
+      - name: Install Suggests packages
+        run: |
+          install.packages("INLA", repos=c(getOption("repos"), INLA="https://inla.r-inla-download.org/R/stable"), dep=FALSE)
+          install.packages(c("bayesplot", "DHARMa", "dplyr", "ggplot2", "INLAspacetime", "knitr", "rmarkdown", "rnaturalearth", "rnaturalearthdata", "sdmTMB", "sf", "testthat"), dependencies=FALSE)
+        shell: Rscript {0}
 
       - uses: r-lib/actions/check-r-package@v2
         with:
