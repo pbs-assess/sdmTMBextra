@@ -55,9 +55,10 @@ jobs:
       - name: Install Suggests packages
         run: |
           install.packages("INLA", repos=c(getOption("repos"), INLA="https://inla.r-inla-download.org/R/stable"), dependencies=FALSE)
-          install.packages(c("bayesplot", "DHARMa", "dplyr", "ggplot2", "INLAspacetime", "rnaturalearth", "rnaturalearthdata", "sdmTMB", "sf", "testthat"))
+          install.packages(c("bayesplot", "DHARMa", "dplyr", "ggplot2", "INLAspacetime", "rnaturalearth", "rnaturalearthdata", "sf", "testthat", "remotes"))
           install.packages("fmesher")
           install.packages(c("brio", "DBI"))
+          remotes::install_github("pbs-assess/sdmTMB")
         shell: Rscript {0}
 
       - uses: r-lib/actions/check-r-package@v2
