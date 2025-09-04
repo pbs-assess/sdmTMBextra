@@ -50,7 +50,6 @@ jobs:
         run: |
           install.packages("INLA", repos=c(getOption("repos"), INLA="https://inla.r-inla-download.org/R/stable"), dependencies=FALSE)
           install.packages(c("bayesplot", "DHARMa", "dplyr", "ggplot2", "INLAspacetime", "rnaturalearth", "rnaturalearthdata", "sdmTMB", "sf", "testthat"))
-          install.packages(c("bayesplot", "DHARMa", "dplyr", "ggplot2", "INLAspacetime", "rnaturalearth", "rnaturalearthdata", "sdmTMB", "sf", "testthat"))
           install.packages("fmesher")
           install.packages(c("brio", "DBI"))
         shell: Rscript {0}
