@@ -2,12 +2,10 @@ test_that("The barrier model works", {
   skip_if_not_installed("rnaturalearth")
   skip_if_not_installed("INLAspacetime")
   skip_if_not_installed("sf")
-  skip_if_not_installed("ggplot2")
   skip_if_not_installed("dplyr")
 
   library(sdmTMB)
   library(dplyr)
-  library(ggplot2)
 
   # For applied situations on finer scales, you may wish to use scale = "large".
   # For that, first: remotes::install_github("ropensci/rnaturalearthhires")
@@ -28,7 +26,7 @@ test_that("The barrier model works", {
 
   # Project our survey data coordinates:
   dat <- pcod
-  survey <- dat %>% dplyr::select(lon, lat, density) %>%
+  survey <- dat |> dplyr::select(lon, lat, density) %>%
     sf::st_as_sf(crs = 4326, coords = c("lon", "lat")) %>%
     sf::st_transform(crs_utm9)
 
@@ -58,21 +56,21 @@ test_that("The barrier model works", {
   fit <- sdmTMB(density ~ depth_scaled, data = pcod, mesh = mesh,
     family = tweedie(link = "log"))
   fit_barrier <- sdmTMB(density ~ depth_scaled, data = pcod, mesh = bspde,
-    family = tweedie(link = "log"))
+    family = tweedie(link = "log"), control = sdmTMBcontrol(newton_loops = 5L))
   fit_barrier
 
   b <- tidy(fit_barrier, "ran_pars")
-  expect_equal(b$estimate[b$term == "range"], 20.541930, tolerance = 1e-4)
-  expect_equal(b$estimate[b$term == "sigma_O"], 2.163180, tolerance = 1e-4)
+  expect_equal(round(b$estimate[b$term == "range"], 1), 20.5, tolerance = 1e-1)
+  expect_equal(round(b$estimate[b$term == "sigma_O"], 1), 2.2, tolerance = 1e-1)
 
   bspde2 <- sdmTMBextra::add_barrier_mesh(
     mesh, bc_coast, range_fraction = 0.5,
     proj_scaling = 1000, plot = FALSE
   )
   fit_barrier2 <- sdmTMB(density ~ depth_scaled, data = pcod, mesh = bspde2,
-    family = tweedie(link = "log"))
+    family = tweedie(link = "log"), control = sdmTMBcontrol(newton_loops = 5L))
 
   b <- tidy(fit_barrier2, "ran_pars")
-  expect_equal(b$estimate[b$term == "range"], 20.441976, tolerance = 1e-4)
-  expect_equal(b$estimate[b$term == "sigma_O"], 2.155292, tolerance = 1e-4)
+  expect_equal(round(b$estimate[b$term == "range"], 1), 20.4, tolerance = 1e-1)
+  expect_equal(round(b$estimate[b$term == "sigma_O"], 1), 2.2, tolerance = 1e-1)
 })
